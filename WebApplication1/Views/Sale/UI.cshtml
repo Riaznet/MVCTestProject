@@ -1,0 +1,36 @@
+﻿@model WebApplication1.Models.ViewModels.SaleReportUi
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h2>Sales Report</h2>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        
+        <div class="form-group">
+            <div class="row">
+                <div class="col-lg-2">
+                    @Html.LabelFor(model => model.CustomerMobile, htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+                <div class="col-lg-3"> 
+                    @Html.EditorFor(model => model.CustomerMobile, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CustomerMobile, "", new { @class = "text-danger" }) 
+                </div>
+                <div class="col-lg-2">
+                    <input type="submit" value="Search (Html)" class="btn btn-info" formtarget="_blank"  style="width:100%" />
+                </div>
+                <div class="col-lg-2">
+                    <input type="submit" formaction='@Url.Action("UIRdlc")' formtarget="_blank" value="Search (RDLC)" class="btn btn-primary"  style="width:100%" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
